@@ -1,5 +1,6 @@
 import { menuItems } from "@/constants";
 import ActiveLink from "../common/ActiveLink";
+import { TMenuItem } from "@/types";
 
 const Sidebar = () => {
   return (
@@ -26,11 +27,7 @@ function MenuItem({
   url = "/",
   title = "",
   icon,
-}: {
-  url: string;
-  title: string;
-  icon?: React.ReactNode;
-}) {
+}: TMenuItem) {
   return (
     <li>
       <ActiveLink url={url}>

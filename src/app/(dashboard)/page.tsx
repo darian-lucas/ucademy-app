@@ -6,7 +6,7 @@ import createUser from "@/lib/actions/user.action";
 const page = async () => {
   const user = await createUser({
     clerkId: "clerk_123",
-    email_address: "thanindepent04@gmail.com",
+    email: "thanindepent04@gmail.com",
     username: "thanguyen",
   });
   return (

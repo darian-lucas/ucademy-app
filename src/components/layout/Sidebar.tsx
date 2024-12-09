@@ -23,6 +23,7 @@ const Sidebar = () => {
       </ul>
       <div className="mt-auto flex items-center justify-end gap-5">
         <ModeToggle></ModeToggle>
+        
         <UserButton />
       </div>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CourseGrid } from "@/components/common";
 import CourseItem from "@/components/course/CourseItem";
 import Heading from "@/components/typography/Heading";

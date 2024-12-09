@@ -51,7 +51,5 @@ export async function POST(req: Request) {
     });
   }
 
-  console.log(msg);
-
   return new Response("OK", { status: 200 });
 }

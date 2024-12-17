@@ -18,6 +18,13 @@ export async function getCourseBySlug({ slug }: { slug: string }) {
 export async function createCourse(params: TCreateCourseParams) {
   try {
     connectToDatabase();
+    const exitsCourse = await Course.findOne({ slug: params.slug });
+    if (exitsCourse) {
+      return {
+        success: false,
+        message: "Đường dẫn khóa học đã tồn tại",
+      };
+    }
     const course = await Course.create(params);
     return {
       success: true,

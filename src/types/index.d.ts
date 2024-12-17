@@ -19,6 +19,7 @@ export type ICreateUserParams = {
 
 export type TCreateCourseParams = {
   title:string;
-  slug?:string;
+  slug:string;
+  author:string;
 };
 

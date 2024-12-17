@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import createUser from "@/lib/actions/user.action";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 export async function POST(req: Request) {
-  const svix_id = req.headers.get("svix-id") ?? "";
-  const svix_timestamp = req.headers.get("svix-timestamp") ?? "";
-  const svix_signature = req.headers.get("svix-signature") ?? "";
+  const svix_id = headers().get("svix-id") ?? "";
+  const svix_timestamp = headers().get("svix-timestamp") ?? "";
+  const svix_signature = headers().get("svix-signature") ?? "";
   if (!process.env.WEBHOOK_SECRET) {
     throw new Error("WEBHOOK SECRET is not set");
   }
@@ -44,6 +45,7 @@ export async function POST(req: Request) {
       email: email_addresses[0].email_address,
       avatar: image_url,
     });
+    console.log("🚀 ~ POST ~ user:", user);
     return NextResponse.json({
       message: "OK",
       user,

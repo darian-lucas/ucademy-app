@@ -3,7 +3,6 @@
 
 import mongoose from "mongoose";
 
-
 // singleton connection: chỉ connect 1 lần, nếu chưa connect thì sẽ connect
 let isConnected: boolean = false;
 export const connectToDatabase = async () => {

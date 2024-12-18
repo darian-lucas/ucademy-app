@@ -1,5 +1,6 @@
 import { ECourseLevel, ECourseStatus } from "@/types/enums";
 import { Document, Schema, model, models } from "mongoose";
+
 export interface ICourse extends Document {
   _id: string;
   title: string;
@@ -103,6 +104,11 @@ const courseSchema = new Schema<ICourse>({
   _destroy: {
     type: Boolean,
     default: false,
+  },
+  level: {
+    type: String,
+    enum: Object.values(ECourseLevel),
+    default: ECourseLevel.BEGINNER,
   },
 });
 const Course = models.Course || model<ICourse>("Course", courseSchema);

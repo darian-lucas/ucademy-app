@@ -114,10 +114,10 @@ const page = async ({
         <div className="bg-white rounded-lg p-5">
           <div className="flex items-center gap-2 mb-3">
             <strong className="text-primary text-xl font-bold">
-              {data.price}
+              {data.price.toLocaleString()}đ
             </strong>
             <span className="text-slate-400 line-through text-sm">
-              {data.sale_price}
+              {data.sale_price.toLocaleString()}đ
             </span>
             <span className="ml-auto inline-block px-3 py-1 rounded-lg bg-primary text-primary bg-opacity-10 font-semibold text-sm">
               {Math.floor((data.price / data.sale_price) * 100)}%

@@ -5,14 +5,22 @@
 //     "@typescript-eslint/no-unused-vars": "error"
 //   }
 // });
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
-const isProduction = process.env.ESLINT_NO_DEV_ERRORS === 'true';
+// const isProduction = process.env.ESLINT_NO_DEV_ERRORS === 'true';
+
+// export default {
+//   rules: {
+//     "no-unused-vars": isProduction ? "off" : "warn",
+//     "@typescript-eslint/no-unused-vars": isProduction ? "off" : "error",
+//   },
+// };
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default {
   rules: {
-    "no-unused-vars": isProduction ? "off" : "warn",
     "@typescript-eslint/no-unused-vars": isProduction ? "off" : "error",
   },
 };
+

@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { manrope } from "@/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-import "./globals.css";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "Ucademy",

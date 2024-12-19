@@ -1,5 +1,11 @@
 import PageNotFound from "@/app/not-found";
 import { IconPlay, IconStudy, IconUsers } from "@/components/icons";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { courseLevelTitle } from "@/constants";
 import { getCourseBySlug } from "@/lib/actions/course.action";
@@ -50,7 +56,7 @@ const page = async ({
         <BoxSection title="Thông tin">
           <div className="grid grid-cols-4 gap-5 mb-10">
             <BoxInfo title="Bài học">100</BoxInfo>
-            <BoxInfo title="Lượt xem">{data.views}</BoxInfo>
+            <BoxInfo title="Lượt xem">{data.views.toLocaleString()}</BoxInfo>
             <BoxInfo title="Trình độ">{courseLevelTitle[data.level]}</BoxInfo>
             <BoxInfo title="Thời lượng">100</BoxInfo>
           </div>
@@ -103,10 +109,12 @@ const page = async ({
         </BoxSection>
         <BoxSection title="Q.A">
           {data.info.qa.map((qa, index) => (
-            <div key={index}>
-              <div>{qa.question}</div>
-              <div>{qa.answer}</div>
-            </div>
+            <Accordion type="single" collapsible key={index}>
+              <AccordionItem value={qa.question}>
+                <AccordionTrigger>{qa.question}</AccordionTrigger>
+                <AccordionContent>{qa.answer}</AccordionContent>
+              </AccordionItem>
+            </Accordion>
           ))}
         </BoxSection>
       </div>
@@ -114,10 +122,10 @@ const page = async ({
         <div className="bg-white rounded-lg p-5">
           <div className="flex items-center gap-2 mb-3">
             <strong className="text-primary text-xl font-bold">
-              {data.price.toLocaleString()}đ
+              {data.price}
             </strong>
             <span className="text-slate-400 line-through text-sm">
-              {data.sale_price.toLocaleString()}đ
+              {data.sale_price}
             </span>
             <span className="ml-auto inline-block px-3 py-1 rounded-lg bg-primary text-primary bg-opacity-10 font-semibold text-sm">
               {Math.floor((data.price / data.sale_price) * 100)}%

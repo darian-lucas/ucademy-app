@@ -9,6 +9,7 @@ export type TMenuItem = {
   url: string;
   title: string;
   icon: React.ReactNode;
+  onlyIcon?: boolean;
 };
 
 export type ICreateUserParams = {
@@ -29,5 +30,6 @@ export type TUpdateCourseParams = {
   slug: string;
   updateData: Partial<ICourse>;
   path?: string;
+  
 };
 

@@ -8,3 +8,5 @@ export { default as IconStar } from "./IconStar";
 export { default as IconEye } from "./IconEye";
 export { default as IconClock } from "./IconClock";
 export { default as IconAdd } from "./IconAdd";
+export { default as IconDelete } from "./IconDelete";
+export { default as IconEdit } from "./IconEdit";

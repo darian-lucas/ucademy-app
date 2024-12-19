@@ -29,7 +29,8 @@ export async function updateLecture(params: TUpdateLectureParams) {
         new: true,
       }
     );
-    console.log("updateLecture ~ res:", res);
+    revalidatePath(params.updateData.path || "/");
+    if (!res) return;
     return {
       success: true,
     };

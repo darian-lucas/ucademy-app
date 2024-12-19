@@ -32,6 +32,12 @@ export type TUpdateCourseParams = {
   path?: string;
 };
 
+export type TCourseUpdateParams = {
+  _id: string;
+  slug: string;
+  lectures: ILecture[];
+};
+
 export type TCreateLectureParams = {
   course: string;
   title?: string;

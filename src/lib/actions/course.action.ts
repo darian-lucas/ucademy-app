@@ -22,7 +22,7 @@ export async function getCourseBySlug({
 }): Promise<ICourse | undefined> {
   try {
     connectToDatabase();
-    const findCourse = await Course.findOne({ slug });
+    const findCourse = await Course.findOne({ slug }).populate("lectures");
     return findCourse;
   } catch (error) {
     console.log(error);

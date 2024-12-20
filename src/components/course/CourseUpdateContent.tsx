@@ -113,7 +113,35 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
       console.log(error);
     }
   };
- 
+  const handleDeleteLesson = async (
+    e: MouseEvent<HTMLSpanElement>,
+    lessonId: string
+  ) => {
+    e.stopPropagation();
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await updateLesson({
+            lessonId,
+            updateData: {
+              _destroy: true,
+            },
+            path: `/manage/course/update-content?slug=${course.slug}`,
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleUpdateLesson = async (
     e: MouseEvent<HTMLSpanElement>,
     lessonId: string
@@ -285,7 +313,7 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
                                         commonClassNames.action,
                                         "text-red-500"
                                       )}
-                                      // onClick={(e) => handleDeleteLesson(e, lesson._id)}
+                                      onClick={(e) => handleDeleteLesson(e, lesson._id)}
                                     >
                                       <IconDelete />
                                     </span>

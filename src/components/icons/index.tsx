@@ -10,3 +10,5 @@ export { default as IconClock } from "./IconClock";
 export { default as IconAdd } from "./IconAdd";
 export { default as IconDelete } from "./IconDelete";
 export { default as IconEdit } from "./IconEdit";
+export { default as IconCancel } from "./IconCancel";
+export { default as IconCheck } from "./IconCheck";

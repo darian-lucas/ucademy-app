@@ -2,9 +2,10 @@
 import Course from "@/database/course.model";
 import Lecture from "@/database/lecture.model";
 import Lesson from "@/database/lesson.model";
-import { TCreateLessonParams } from "@/types";
+import { TCreateLessonParams, TUpdateLessonParams } from "@/types";
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "../mongoose";
+
 export async function createLesson(params: TCreateLessonParams) {
   try {
     connectToDatabase();
@@ -17,6 +18,22 @@ export async function createLesson(params: TCreateLessonParams) {
     await findLecture.save();
     revalidatePath(params.path || "/");
     if (!newLesson) return;
+    return {
+      success: true,
+    };
+  } catch (error) {}
+}
+
+export async function updateLesson(params: TUpdateLessonParams) {
+  try {
+    connectToDatabase();
+    const res = await Lesson.findByIdAndUpdate(
+      params.lessonId,
+      params.updateData,
+      { new: true }
+    );
+    revalidatePath(params.path || "/");
+    if (!res) return;
     return {
       success: true,
     };

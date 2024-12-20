@@ -1,10 +1,6 @@
 "use client";
-import { Form } from "@/components/ui/form";
-import { ILesson } from "@/database/lesson.model";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import {
+  Form,
   FormControl,
   FormField,
   FormItem,
@@ -12,17 +8,28 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { editorOptions } from "@/constants";
+import { ILesson } from "@/database/lesson.model";
 import { updateLesson } from "@/lib/actions/lesson.actions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Editor } from "@tinymce/tinymce-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { z } from "zod";
 import { Button } from "../ui/button";
+
 const formSchema = z.object({
   slug: z.string().optional(),
   duration: z.number().optional(),
   video_url: z.string().optional(),
   content: z.string().optional(),
 });
+
 const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
+  const editorRef = useRef<any>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,6 +39,15 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
       content: lesson.content,
     },
   });
+  // cách khác không dùng onInit để có hiện được nội dung sau khi load trang (1s không được thì chỉnh 2s -> 5s)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (editorRef.current) {
+  //       editorRef.current.setContent(lesson.content);
+  //     }
+  //   }, 1000);
+  // }, [lesson.content]);
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const res = await updateLesson({
@@ -46,6 +62,7 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
     } finally {
     }
   }
+  const { theme } = useTheme();
   return (
     <div>
       <Form {...form}>
@@ -102,15 +119,26 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
               control={form.control}
               name="content"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-start-1 col-end-3">
                   <FormLabel>Nội dung</FormLabel>
-                  <FormControl></FormControl>
+                  <FormControl>
+                    <Editor
+                      apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+                      onInit={(_evt, editor) => {
+                        (editorRef.current = editor).setContent(
+                          lesson.content || ""
+                        );
+                      }}
+                      value={field.value}
+                      {...editorOptions(field, theme)}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <div className="flex justify-end gap-5 items-center">
+          <div className="flex justify-end gap-5 items-center mt-8">
             <Button type="submit">Cập nhật</Button>
             <Link href="/" className="text-sm text-slate-600">
               Xem trước
@@ -121,4 +149,5 @@ const LessonItemUpdate = ({ lesson }: { lesson: ILesson }) => {
     </div>
   );
 };
+
 export default LessonItemUpdate;

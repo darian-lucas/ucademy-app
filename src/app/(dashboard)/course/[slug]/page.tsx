@@ -64,7 +64,7 @@ const page = async ({
           </div>
         </BoxSection>
         <BoxSection title="Nội dung khóa học">
-          <LessonContent lectures={lectures} course="" slug="" histories={}></LessonContent>
+          <LessonContent lectures={lectures} course="" slug=""></LessonContent>
         </BoxSection>
         <BoxSection title="Yêu cầu">
           {data.info.requirements.map((r, index) => (

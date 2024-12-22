@@ -4,6 +4,9 @@ import { getCourseBySlug } from "@/lib/actions/course.action";
 import { getHistory } from "@/lib/actions/history.actions";
 import { findAllLessons, getLessonBySlug } from "@/lib/actions/lesson.actions";
 import LessonNavigation from "./LessonNavigation";
+import { getUserInfo } from "@/lib/actions/user.action";
+import { auth } from "@clerk/nextjs/server";
+import PageNotFound from "@/app/not-found";
 
 const page = async ({
   params,
@@ -16,6 +19,10 @@ const page = async ({
     slug: string;
   };
 }) => {
+  const { userId } = await auth();
+  if (!userId) return <PageNotFound />;
+  const findUser = await getUserInfo({ userId });
+  if (!findUser) return <PageNotFound />;
   const course = params.course;
   const slug = searchParams.slug;
   const findCourse = await getCourseBySlug({ slug: course });

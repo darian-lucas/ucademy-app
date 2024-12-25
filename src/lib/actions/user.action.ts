@@ -2,6 +2,8 @@
 import User, { IUser } from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
 import { ICreateUserParams } from "@/types";
+import { ICourse } from "@/database/course.model";
+import { auth } from "@clerk/nextjs/server";
 export async function createUser(params: ICreateUserParams) {
   try {
     connectToDatabase();
@@ -22,6 +24,20 @@ export async function getUserInfo({
     const findUser = await User.findOne({ clerkId: userId });
     if (!findUser) return null;
     return findUser;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getUserCourses(): Promise<ICourse[] | undefined | null> {
+  try {
+    connectToDatabase();
+    const { userId } = await auth();
+    const findUser = await User.findOne({ clerkId: userId }).populate(
+      "courses"
+    );
+    if (!findUser) return null;
+    return findUser.courses;
   } catch (error) {
     console.log(error);
   }

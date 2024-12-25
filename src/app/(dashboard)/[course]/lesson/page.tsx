@@ -1,12 +1,13 @@
+import PageNotFound from "@/app/not-found";
 import Heading from "@/components/common/Heading";
 import LessonContent from "@/components/lesson/LessonContent";
 import { getCourseBySlug } from "@/lib/actions/course.action";
 import { getHistory } from "@/lib/actions/history.actions";
 import { findAllLessons, getLessonBySlug } from "@/lib/actions/lesson.actions";
-import LessonNavigation from "./LessonNavigation";
 import { getUserInfo } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs/server";
-import PageNotFound from "@/app/not-found";
+import LessonNavigation from "./LessonNavigation";
+import LessonSaveUrl from "./LessonSaveUrl";
 
 const page = async ({
   params,
@@ -28,6 +29,7 @@ const page = async ({
   const findCourse = await getCourseBySlug({ slug: course });
   if (!findCourse) return null;
   const courseId = findCourse?._id.toString();
+  if (!findUser.courses.includes(courseId as any)) return <PageNotFound />;
   const lessonDetails = await getLessonBySlug({
     slug,
     course: courseId || "",
@@ -45,6 +47,10 @@ const page = async ({
     ((histories?.length || 0) / (lessonList?.length || 1)) * 100;
   return (
     <div className="block xl:grid xl:grid-cols-[minmax(0,2fr),minmax(0,1fr)] gap-10 min-h-screen items-start">
+      <LessonSaveUrl
+        course={course}
+        url={`/${course}/lesson?slug=${slug}`}
+      ></LessonSaveUrl>
       <div>
         <div className="relative mb-5 aspect-video">
           <iframe
@@ -73,7 +79,7 @@ const page = async ({
       <div className="sticky top-5 right-0 max-h-[calc(100svh-100px)] overflow-y-auto">
         <div className="h-3 w-full rounded-full border borderDarkMode bgDarkMode mb-2">
           <div
-            className="h-full rounded-full bg-secondary w-0 transition-all duration-300"
+            className="h-full rounded-full bg-gradient-to-r from-primary to-secondary w-0 transition-all duration-300"
             style={{
               width: `${completePercentage}%`,
             }}

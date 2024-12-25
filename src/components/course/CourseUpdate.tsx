@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/select";
 import { courseLevel, courseStatus } from "@/constants";
 import { ICourse } from "@/database/course.model";
+import { updateCourse } from "@/lib/actions/course.action";
 import { ECourseLevel, ECourseStatus } from "@/types/enums";
 import { UploadButton } from "@/utils/uploadthing";
 import Image from "next/image";
@@ -32,7 +33,6 @@ import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
 import { IconAdd } from "../icons";
 import { Textarea } from "../ui/textarea";
-import { updateCourse } from "@/lib/actions/course.action";
 
 const formSchema = z.object({
   title: z.string().min(10, "Tên khóa học phải có ít nhất 10 ký tự"),
@@ -206,7 +206,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
                   <Textarea
                     placeholder="Nhập mô tả..."
                     {...field}
-                    className="h-[200px]"
+                    className="h-[250px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -221,7 +221,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
                 <FormLabel>Ảnh đại diện</FormLabel>
                 <FormControl>
                   <>
-                    <div className="h-[200px] bg-white rounded-md border border-gray-200 flex items-center justify-center relative">
+                    <div className="h-[250px] bg-white rounded-md border border-gray-200 flex items-center justify-center relative">
                       {!imageWatch ? (
                         <UploadButton
                           endpoint="imageUploader"
@@ -238,7 +238,7 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
                           alt=""
                           src={imageWatch}
                           fill
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover rounded-md"
                         />
                       )}
                     </div>

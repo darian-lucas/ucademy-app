@@ -23,7 +23,6 @@ export async function createLesson(params: TCreateLessonParams) {
     };
   } catch (error) {}
 }
-
 export async function updateLesson(params: TUpdateLessonParams) {
   try {
     connectToDatabase();
@@ -37,6 +36,7 @@ export async function updateLesson(params: TUpdateLessonParams) {
     return {
       success: true,
     };
+    revalidatePath(params.path || "/");
   } catch (error) {}
 }
 
@@ -52,7 +52,7 @@ export async function getLessonBySlug({
     const findLesson = await Lesson.findOne({
       slug,
       course,
-    });
+    }).select("title video_url content");
     return findLesson;
   } catch (error) {
     console.log(error);
@@ -68,8 +68,22 @@ export async function findAllLessons({
     connectToDatabase();
     const lessons = await Lesson.find({
       course,
-    });
+    }).select("title video_url content slug");
     return lessons;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function countLessonByCourseId({
+  courseId,
+}: {
+  courseId: string;
+}): Promise<number | undefined> {
+  try {
+    connectToDatabase();
+    const count = await Lesson.countDocuments({ course: courseId });
+    return count || 0;
   } catch (error) {
     console.log(error);
   }

@@ -1,11 +1,10 @@
 import { CourseGrid } from "@/components/common";
 import Heading from "@/components/common/Heading";
 import CourseItem from "@/components/course/CourseItem";
-
-import { getAllCourses } from "@/lib/actions/course.action";
+import {getAllCoursesPublic } from "@/lib/actions/course.action";
 
 const page = async () => {
-  const courses = (await getAllCourses()) || [];
+  const courses = (await getAllCoursesPublic({})) || [];
   return (
     <div>
       <Heading>Khám phá</Heading>

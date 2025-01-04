@@ -1,5 +1,5 @@
 import PageNotFound from "@/app/not-found";
-import { getUserInfo } from "@/lib/actions/user.action";
+import { getUserInfo } from "@/lib/actions/user.actions";
 import { EUserRole } from "@/types/enums";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";

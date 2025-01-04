@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/table";
 import { commonClassNames, courseStatus } from "@/constants";
 import { ICourse } from "@/database/course.model";
-import { updateCourse } from "@/lib/actions/course.action";
+import { updateCourse } from "@/lib/actions/course.actions";
 import { cn } from "@/lib/utils";
 import { ECourseStatus } from "@/types/enums";
 import { debounce } from "lodash";
@@ -45,15 +45,12 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
 
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
+  const createQueryString = useCallback((name: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(name, value);
 
-      return params.toString();
-    },
-    []
-  );
+    return params.toString();
+  }, []);
   const handleDeleteCourse = (slug: string) => {
     Swal.fire({
       title: "Are you sure?",

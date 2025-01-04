@@ -1,5 +1,5 @@
 import Heading from "@/components/common/Heading";
-import { getUserCourses } from "@/lib/actions/user.action";
+import { getUserCourses } from "@/lib/actions/user.actions";
 import StudyCourses from "./StudyCourses";
 
 const page = async () => {

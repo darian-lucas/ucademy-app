@@ -1,5 +1,5 @@
 import PageNotFound from "@/app/not-found";
-import { getUserInfo } from "@/lib/actions/user.action";
+import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import { Suspense } from "react";
 import LoadingOutline from "./@outline/LoadingOutline";
@@ -13,7 +13,7 @@ const Layout = async ({
   player: React.ReactNode;
   outline: React.ReactNode;
 }) => {
-  const { userId } =await auth();
+  const { userId } = await auth();
   if (!userId) return <PageNotFound />;
   const findUser = await getUserInfo({ userId });
   if (!findUser) return <PageNotFound />;

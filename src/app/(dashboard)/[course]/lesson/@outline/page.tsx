@@ -1,5 +1,5 @@
 import LessonContent from "@/components/lesson/LessonContent";
-import { getCourseBySlug } from "@/lib/actions/course.action";
+import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { getHistory } from "@/lib/actions/history.actions";
 import { countLessonByCourseId } from "@/lib/actions/lesson.actions";
 const page = async ({

@@ -1,5 +1,5 @@
 import Heading from "@/components/common/Heading";
-import { getCourseBySlug } from "@/lib/actions/course.action";
+import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { findAllLessons } from "@/lib/actions/lesson.actions";
 import LessonSaveUrl from "../LessonSaveUrl";
 import VideoPlayer from "./VideoPlayer";

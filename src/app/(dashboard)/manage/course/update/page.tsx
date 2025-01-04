@@ -1,6 +1,6 @@
 import Heading from "@/components/common/Heading";
 import CourseUpdate from "@/components/course/CourseUpdate";
-import { getCourseBySlug } from "@/lib/actions/course.action";
+import { getCourseBySlug } from "@/lib/actions/course.actions";
 import React from "react";
 
 const page = async ({
@@ -17,7 +17,9 @@ const page = async ({
   return (
     <>
       <Heading className="mb-8">Cập nhật khóa học</Heading>
-      <CourseUpdate data={JSON.parse(JSON.stringify(findCourse))}></CourseUpdate>
+      <CourseUpdate
+        data={JSON.parse(JSON.stringify(findCourse))}
+      ></CourseUpdate>
     </>
   );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createUser } from "@/lib/actions/user.action";
+import { createUser } from "@/lib/actions/user.actions";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
   const sivx = new Webhook(process.env.WEBHOOK_SECRET);
 
-  let msg:WebhookEvent;
+  let msg: WebhookEvent;
 
   try {
     msg = sivx.verify(body, {
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   }
 
   const eventType = msg.type;
-  if(eventType === "user.created") {
+  if (eventType === "user.created") {
     // created user to database
     const { id, username, email_addresses, image_url } = msg.data;
     const user = await createUser({

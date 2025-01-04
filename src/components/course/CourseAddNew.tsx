@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import slugify from "slugify";
-import { createCourse } from "@/lib/actions/course.action";
+import { createCourse } from "@/lib/actions/course.actions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { IUser } from "@/database/user.model";

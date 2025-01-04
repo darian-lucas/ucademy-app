@@ -1,6 +1,6 @@
 import Heading from "@/components/common/Heading";
 import CourseAddNew from "@/components/course/CourseAddNew";
-import { getUserInfo } from "@/lib/actions/user.action";
+import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import React from "react";
 

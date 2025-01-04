@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/select";
 import { courseLevel, courseStatus } from "@/constants";
 import { ICourse } from "@/database/course.model";
-import { updateCourse } from "@/lib/actions/course.action";
+import { updateCourse } from "@/lib/actions/course.actions";
 import { ECourseLevel, ECourseStatus } from "@/types/enums";
 import { UploadButton } from "@/utils/uploadthing";
 import Image from "next/image";

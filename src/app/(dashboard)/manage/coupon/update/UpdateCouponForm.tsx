@@ -23,13 +23,13 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { couponTypes } from "@/constants";
+import { createCoupon } from "@/lib/actions/coupon.action";
 import { ECouponType } from "@/types/enums";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
-import { format } from "date-fns";
-import { toast } from "react-toastify";
+import { format } from "date-fns";  
 import { redirect } from "next/navigation";
-import { createCoupon } from "@/lib/actions/coupon.action";
+import { useState } from "react";
+import { toast } from "react-toastify";
 const formSchema = z.object({
   title: z.string({
     message: "Tiêu đề không được để trống",
@@ -48,7 +48,7 @@ const formSchema = z.object({
   courses: z.array(z.string()).optional(),
   limit: z.number().optional(),
 });
-const NewCouponForm = () => {
+const UpdateCouponForm = () => {
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -67,7 +67,6 @@ const NewCouponForm = () => {
       console.log(error);
     }
   }
-
   const couponTypeWatch = form.watch("type");
 
   return (
@@ -266,11 +265,11 @@ const NewCouponForm = () => {
           />
         </div>
         <Button variant="primary" className="w-[150px] ml-auto flex">
-          Tạo mã
+          Cập nhật
         </Button>
       </form>
     </Form>
   );
 };
 
-export default NewCouponForm;
+export default UpdateCouponForm;

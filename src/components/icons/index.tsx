@@ -14,3 +14,5 @@ export { default as IconCancel } from "./IconCancel";
 export { default as IconCheck } from "./IconCheck";
 export { default as IconLeftArrow } from "./IconLeftArrow";
 export { default as IconRightArrow } from "./IconRightArrow";
+export { default as IconCoupon } from "./IconCoupon";
+export { default as IconPlus } from "./IconPlus";

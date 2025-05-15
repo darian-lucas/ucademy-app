@@ -105,13 +105,12 @@ export async function createCourse(params: TCreateCourseParams) {
   }
 }
 export async function updateCourse(params: TUpdateCourseParams) {
-  console.log("updateCourse ~ params:", params);
   try {
     connectToDatabase();
     const findCourse = await Course.findOne({ slug: params.slug });
     if (!findCourse) return;
     await Course.findOneAndUpdate({ slug: params.slug }, params.updateData, {
-      new: true,
+      new: true,  
     });
     revalidatePath(params.path || "/");
     return {

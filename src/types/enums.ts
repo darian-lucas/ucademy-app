@@ -24,10 +24,15 @@ enum ELessonType {
   TEXT = "TEXT",
 }
 
+enum ECouponType {
+  PERCENT = "PERCENT",
+  AMOUNT = "AMOUNT",
+}
+
 enum EOrderStatus {
   PENDING = "PENDING",
   COMPLETED = "COMPLETED",
   CANCELED = "CANCELED",
 }
 
-export { EUserRole, EUserStatus, ECourseStatus, ECourseLevel, ELessonType,EOrderStatus };
+export { EUserRole, EUserStatus, ECourseStatus, ECourseLevel, ELessonType,EOrderStatus,ECouponType };

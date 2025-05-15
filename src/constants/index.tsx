@@ -4,10 +4,11 @@ import {
   IconOrder,
   IconComment,
   IconStudy,
+  IconCoupon,
 } from "@/components/icons";
 import IconExplore from "@/components/icons/IconExplore";
 import { TMenuItem } from "@/types";
-import { ECourseLevel, ECourseStatus, EOrderStatus } from "@/types/enums";
+import { ECouponType, ECourseLevel, ECourseStatus, EOrderStatus } from "@/types/enums";
 
 export const menuItems: TMenuItem[] = [
   {
@@ -34,6 +35,11 @@ export const menuItems: TMenuItem[] = [
     url: "/manage/order",
     title: "Quản lí đơn hàng",
     icon: <IconOrder className="size-5" />,
+  },
+   {
+    url: "/manage/coupon",
+    title: "Quản lý coupon",
+    icon: <IconCoupon className="size-5" />,
   },
   {
     url: "/manage/comment",
@@ -156,5 +162,19 @@ export const orderStatus: {
     title: "Đã hủy",
     value: EOrderStatus.CANCELED,
     className: "text-red-500 bg-red-500",
+  },
+];
+
+export const couponTypes: {
+  title: string;
+  value: ECouponType;
+}[] = [
+  {
+    title: "Phần trăm",
+    value: ECouponType.PERCENT,
+  },
+  {
+    title: "Giá trị",
+    value: ECouponType.AMOUNT,
   },
 ];

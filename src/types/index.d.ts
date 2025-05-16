@@ -107,3 +107,12 @@ export type TCreateOrderParams = {
   discount?: number;
   coupon?: string;
 };
+
+//coupon
+export type TCreateCouponParams = Omit<ICoupon, "_id created_at">;
+export type TCouponParams = Omit<ICoupon, "courses"> & {
+  courses: {
+    _id: string;
+    title: string;
+  }[];
+};

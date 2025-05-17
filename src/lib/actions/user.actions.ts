@@ -6,6 +6,8 @@ import { TCreateUserParams } from "@/types";
 import { ECourseStatus } from "@/types/enums";
 import { auth } from "@clerk/nextjs/server";
 import { connectToDatabase } from "../mongoose";
+import Lecture from "@/database/lecture.model";
+import Lesson from "@/database/lesson.model";
 
 export async function createUser(params: TCreateUserParams) {
   try {
@@ -39,6 +41,16 @@ export async function getUserCourses(): Promise<ICourse[] | undefined | null> {
       model: Course,
       match: {
         status: ECourseStatus.APPROVED,
+      },
+      populate: {
+        path: "lectures",
+        model: Lecture,
+        select: "lessons",
+        populate: {
+          path: "lessons",
+          model: Lesson,
+          select: "slug",
+        },
       },
     });
     if (!findUser) return null;

@@ -20,7 +20,7 @@ const page = async ({
 
   return (
     <OrderManage
-      orders={orders ? JSON.parse(JSON.stringify(orders)) : []}
+      orders={orders}
     ></OrderManage>
   );
 };

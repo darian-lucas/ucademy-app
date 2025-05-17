@@ -35,4 +35,18 @@ enum EOrderStatus {
   CANCELED = "CANCELED",
 }
 
-export { EUserRole, EUserStatus, ECourseStatus, ECourseLevel, ELessonType,EOrderStatus,ECouponType };
+enum ERatingStatus {
+  ACTIVE = "ACTIVE",
+  UNACTIVE = "UNACTIVE",
+}
+
+export {
+  EUserRole,
+  EUserStatus,
+  ECourseStatus,
+  ECourseLevel,
+  ELessonType,
+  EOrderStatus,
+  ECouponType,
+  ERatingStatus,
+};

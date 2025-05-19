@@ -4,10 +4,13 @@ import Coupon, { ICoupon } from "@/database/coupon.model";
 import { connectToDatabase } from "../mongoose";
 import { revalidatePath } from "next/cache";
 import {
+  TCouponItem,
   TCouponParams,
   TCreateCouponParams,
+  TFilterData,
   TUpdateCouponParams,
 } from "@/types";
+import { FilterQuery } from "mongoose";
 
 export async function createCoupon(params: TCreateCouponParams) {
   try {
@@ -42,10 +45,22 @@ export async function updateCoupon(params: TUpdateCouponParams) {
   }
 }
 
-export async function getCoupons(params: any): Promise<ICoupon[] | undefined> {
+export async function getCoupons(
+  params: TFilterData
+): Promise<TCouponItem[] | undefined> {
   try {
     connectToDatabase();
-     const coupons = await Coupon.find(params).sort({ created_at: -1 });
+    const { page = 1, limit = 10, search, active } = params;
+    const skip = (page - 1) * limit;
+    const query: FilterQuery<typeof Coupon> = {};
+    if (search) {
+      query.$or = [{ code: { $regex: search, $options: "i" } }];
+    }
+    // query.active = active;
+    const coupons = await Coupon.find(query)
+      .skip(skip)
+      .limit(limit)
+      .sort({ created_at: -1 });
     return JSON.parse(JSON.stringify(coupons));
   } catch (error) {
     console.log(error);
@@ -84,7 +99,7 @@ export async function getValidateCoupon(
     const coupon = JSON.parse(JSON.stringify(findCoupon));
     const couponCourses = coupon?.courses.map((course: any) => course._id);
     let isActive = true;
-     if (!couponCourses.includes(params.courseId)) isActive = false;
+    if (!couponCourses.includes(params.courseId)) isActive = false;
     if (!coupon?.active) isActive = false;
     if (coupon?.used >= coupon?.limit) isActive = false;
     if (coupon?.start_date && new Date(coupon?.start_date) > new Date())

@@ -1,7 +1,7 @@
 "use client";
 import { StatusBadge, TableAction } from "@/components/common";
 import Heading from "@/components/common/Heading";
-import PaginationBtn from "@/components/common/PaginationBtn";
+import Pagination from "@/components/common/Pagination";
 import TableActionItem from "@/components/common/TableActionItem";
 import { Input } from "@/components/ui/input";
 import {
@@ -29,7 +29,15 @@ import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
 
-const RatingManage = ({ ratings }: { ratings: any }) => {
+const RatingManage = ({
+  ratings,
+  totalPages,
+  total,
+}: {
+  ratings: any;
+  totalPages: number;
+  total: number;
+}) => {
   const { handleSearchData, handleSelectStatus } = useQueryString();
 
   const handleUpdateRating = async (id: string) => {
@@ -162,7 +170,7 @@ const RatingManage = ({ ratings }: { ratings: any }) => {
             })}
         </TableBody>
       </Table>
-      <PaginationBtn></PaginationBtn>
+      <Pagination totalPages={totalPages} total={total}></Pagination>
     </div>
   );
 };

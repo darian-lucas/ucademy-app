@@ -61,9 +61,13 @@ export async function deleteRating(id: string): Promise<boolean | undefined> {
     console.log(error);
   }
 }
-export async function getRatings(
-  params: TFilterData
-): Promise<TRatingItem[] | undefined> {
+export async function getRatings(params: TFilterData): Promise<
+  | {
+      ratings: TRatingItem[] | undefined;
+      total: number;
+    }
+  | undefined
+> {
   try {
     connectToDatabase();
     const { page = 1, limit = 10, search, status } = params;
@@ -87,7 +91,11 @@ export async function getRatings(
       .skip(skip)
       .limit(limit)
       .sort({ created_at: -1 });
-    return JSON.parse(JSON.stringify(ratings));
+    const total = await Rating.countDocuments(query);
+    return {
+      ratings: JSON.parse(JSON.stringify(ratings)),
+      total,
+    };
   } catch (error) {
     console.log(error);
   }

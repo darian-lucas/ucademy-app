@@ -14,6 +14,13 @@ enum ECourseStatus {
   PENDING = "PENDING",
   REJECTED = "REJECTED",
 }
+
+enum ECommentStatus {
+  APPROVED = "APPROVED",
+  PENDING = "PENDING",
+  REJECTED = "REJECTED",
+}
+
 enum ECourseLevel {
   BEGINNER = "BEGINNER",
   INTERMEDIATE = "INTERMEDIATE",
@@ -49,4 +56,5 @@ export {
   EOrderStatus,
   ECouponType,
   ERatingStatus,
+  ECommentStatus
 };

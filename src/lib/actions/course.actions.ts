@@ -14,6 +14,7 @@ import { ECourseStatus, ERatingStatus } from "@/types/enums";
 import { FilterQuery } from "mongoose";
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "../mongoose";
+import Rating from "@/database/rating.model";
 // fetching
 export async function getAllCoursesPublic(
   params: TGetAllCourseParams
@@ -84,6 +85,7 @@ export async function getCourseBySlug({
       })
       .populate({
         path: "rating",
+        model: Rating,
         match: {
           status: ERatingStatus.ACTIVE,
         },

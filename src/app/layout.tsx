@@ -33,7 +33,7 @@ export default function RootLayout({
             <Analytics />
             <ToastContainer
               autoClose={2000}
-              className="text-sm font-mediu"
+              className="text-sm font-medium"
               position="top-right"
             />
           </ThemeProvider>

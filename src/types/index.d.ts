@@ -1,5 +1,8 @@
+import { Icomment } from "@/database/comment.model";
 import { ICourse } from "@/database/course.model";
 import { ILesson } from "@/database/lesson.model";
+import { ICoupon } from "@/database/coupon.model";
+import { ECouponType } from "./enums";
 
 export type TActiveLinkProps = {
   url: string;
@@ -172,3 +175,10 @@ export type TFilterData = {
   status?: string;
   active?: boolean;
 };
+
+export interface ICommentItem extends Omit<Icomment, "user"> {
+  user: {
+    name: string;
+    avatar: string;
+  };
+}

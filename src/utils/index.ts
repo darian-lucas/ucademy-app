@@ -2,7 +2,7 @@ import { ICommentItem } from "@/types";
 import { ObjectId } from "mongoose";
 import { Manrope } from "next/font/google";
 
-const manrope = Manrope({ subsets: ["latin"]});
+export const manrope = Manrope({ subsets: ["latin"]});
 
 export const createOrderCode = () =>
   `DH-${new Date().getTime().toString().slice(-6)}`;
@@ -44,8 +44,6 @@ export const getRepliesComment = (
   parentId: string | ObjectId
 ) => {
   return comments.filter(
-    (item) => item.parentId?.toString() === parentId.toString()
+    (item) => item.parentId?.toString() === parentId.toString() 
   );
 };
-
-export {manrope}

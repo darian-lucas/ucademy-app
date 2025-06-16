@@ -2,8 +2,8 @@
 
 import Comment from "@/database/comment.model";
 import User from "@/database/user.model";
-import { ICommentItem } from "@/types";
-import { ECommentStatus } from "@/types/enums";
+import { CommentItem } from "@/types";
+import { CommentStatus } from "@/types/enums";
 import { connectToDatabase } from "../mongoose";
 import { revalidatePath } from "next/cache";
 
@@ -18,7 +18,7 @@ export async function createComment(params: {
   try {
     connectToDatabase();
     const newComment = await Comment.create(params);
-    revalidatePath(params.path || "/"); 
+    revalidatePath(params.path || "/");
     if (!newComment) return false;
     return true;
   } catch (error) {
@@ -28,10 +28,10 @@ export async function createComment(params: {
 export async function getCommentsByLesson(
   lessonId: string,
   sort: "recent" | "oldest" = "recent"
-): Promise<ICommentItem[] | undefined> {
+): Promise<CommentItem[] | undefined> {
   try {
     connectToDatabase();
-    const comments = await Comment.find<ICommentItem>({
+    const comments = await Comment.find<CommentItem>({
       lesson: lessonId,
     })
       .sort({ created_at: sort === "recent" ? -1 : 1 })

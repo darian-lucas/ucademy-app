@@ -1,17 +1,17 @@
-import { ECommentStatus } from "@/types/enums";
+import { CommentStatus } from "@/types/enums";
 import { Document, Schema, model, models } from "mongoose";
 
-export interface IComment extends Document {
+export interface CommentProps extends Document {
   _id: string;
   content: string;
   lesson: Schema.Types.ObjectId;
   user: Schema.Types.ObjectId;
-  status: ECommentStatus;
+  status: CommentStatus;
   created_at: Date;
   parentId?: Schema.Types.ObjectId;
   level: number;
 }
-const commentSchema = new Schema<IComment>({
+const commentSchema = new Schema<CommentProps>({
   content: {
     type: String,
     required: true,
@@ -21,13 +21,13 @@ const commentSchema = new Schema<IComment>({
     ref: "Lesson",
   },
   user: {
-    type: Schema.Types.ObjectId, 
+    type: Schema.Types.ObjectId,
     ref: "User",
   },
   status: {
     type: String,
-    default: ECommentStatus.PENDING,
-    enum: Object.values(ECommentStatus),
+    default: CommentStatus.PENDING,
+    enum: Object.values(CommentStatus),
   },
   created_at: {
     type: Date,
@@ -43,5 +43,5 @@ const commentSchema = new Schema<IComment>({
     default: null,
   },
 });
-const Comment = models.Comment || model<IComment>("Comment", commentSchema);
+const Comment = models.Comment || model<CommentProps>("Comment", commentSchema);
 export default Comment;

@@ -6,11 +6,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { commonClassNames } from "@/constants";
-import { ILesson } from "@/database/lesson.model";
+import { LessonProps } from "@/database/lesson.model";
 import { createLecture, updateLecture } from "@/lib/actions/lecture.actions";
 import { createLesson, updateLesson } from "@/lib/actions/lesson.actions";
 import { cn } from "@/lib/utils";
-import { TCourseUpdateParams, TUpdateCourseLecture } from "@/types";
+import { CourseUpdateParams, UpdateCourseLecture } from "@/types";
 import { MouseEvent, useState } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
@@ -20,7 +20,7 @@ import LessonItemUpdate from "../lesson/LessonItemUpdate";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
-const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
+const CourseUpdateContent = ({ course }: { course: CourseUpdateParams }) => {
   const lectures = course.lectures;
   const [lectureEdit, setLectureEdit] = useState("");
   const [lessonEdit, setLessonEdit] = useState("");
@@ -171,7 +171,7 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
   return (
     <div>
       <div className="flex flex-col gap-5">
-        {lectures.map((lecture: TUpdateCourseLecture) => (
+        {lectures.map((lecture: UpdateCourseLecture) => (
           <div key={lecture._id}>
             <Accordion
               type="single"
@@ -246,7 +246,7 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
                 </AccordionTrigger>
                 <AccordionContent className="border-none !bg-transparent">
                   <div className="flex flex-col gap-5">
-                    {lecture.lessons.map((lesson: ILesson) => (
+                    {lecture.lessons.map((lesson: LessonProps) => (
                       <Accordion
                         type="single"
                         collapsible={!lessonEdit}
@@ -313,7 +313,9 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
                                         commonClassNames.action,
                                         "text-red-500"
                                       )}
-                                      onClick={(e) => handleDeleteLesson(e, lesson._id)}
+                                      onClick={(e) =>
+                                        handleDeleteLesson(e, lesson._id)
+                                      }
                                     >
                                       <IconDelete />
                                     </span>

@@ -1,19 +1,20 @@
 "use server";
 
-import Course, { ICourse } from "@/database/course.model";
-import User, { IUser } from "@/database/user.model";
-import { TCreateUserParams } from "@/types";
-import { ECourseStatus } from "@/types/enums";
+import Course, { CourseProps } from "@/database/course.model";
+import User, { UserProps } from "@/database/user.model";
+import { CreateUserParams } from "@/types";
+import { CourseStatus } from "@/types/enums";
 import { auth } from "@clerk/nextjs/server";
 import { connectToDatabase } from "../mongoose";
 import Lecture from "@/database/lecture.model";
 import Lesson from "@/database/lesson.model";
 
-export async function createUser(params: TCreateUserParams) {
+export async function createUser(params: CreateUserParams) {
   try {
     connectToDatabase();
-    const newUser = await User.create(params);
-    return newUser;
+    const user = new User(params);
+    await user.save();
+    return user;
   } catch (error) {
     console.log(error);
   }
@@ -22,7 +23,7 @@ export async function getUserInfo({
   userId,
 }: {
   userId: string;
-}): Promise<IUser | null | undefined> {
+}): Promise<UserProps | null | undefined> {
   try {
     connectToDatabase();
     const findUser = await User.findOne({ clerkId: userId });
@@ -32,7 +33,9 @@ export async function getUserInfo({
     console.log(error);
   }
 }
-export async function getUserCourses(): Promise<ICourse[] | undefined | null> {
+export async function getUserCourses(): Promise<
+  CourseProps[] | undefined | null
+> {
   try {
     connectToDatabase();
     const { userId } = await auth();
@@ -40,7 +43,7 @@ export async function getUserCourses(): Promise<ICourse[] | undefined | null> {
       path: "courses",
       model: Course,
       match: {
-        status: ECourseStatus.APPROVED,
+        status: CourseStatus.APPROVED,
       },
       populate: {
         path: "lectures",

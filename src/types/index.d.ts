@@ -1,22 +1,22 @@
-import { Icomment } from "@/database/comment.model";
-import { ICourse } from "@/database/course.model";
-import { ILesson } from "@/database/lesson.model";
-import { ICoupon } from "@/database/coupon.model";
-import { ECouponType } from "./enums";
+import { CommentProps } from "@/database/comment.model";
+import { CourseProps } from "@/database/course.model";
+import { LessonProps } from "@/database/lesson.model";
+import { CouponProps } from "@/database/coupon.model";
+import { CouponType } from "./enums";
 
-export type TActiveLinkProps = {
+export type ActiveLinkProps = {
   url: string;
   children: React.ReactNode;
 };
 
-export type TMenuItem = {
+export type MenuItem = {
   url: string;
   title: string;
   icon: React.ReactNode;
   onlyIcon?: boolean;
 };
 
-export type TCreateUserParams = {
+export type CreateUserParams = {
   clerkId: string;
   username: string;
   email: string;
@@ -24,29 +24,29 @@ export type TCreateUserParams = {
   avatar?: string;
 };
 
-export type TCreateCourseParams = {
+export type CreateCourseParams = {
   title: string;
   slug: string;
   author: string;
 };
 
-export type TUpdateCourseParams = {
+export type UpdateCourseParams = {
   slug: string;
-  updateData: Partial<ICourse>;
+  updateData: Partial<CourseProps>;
   path?: string;
 };
 
-export type TUpdateCourseLecture = {
+export type UpdateCourseLecture = {
   _id: string;
   title: string;
-  lessons: ILesson[];
+  lessons: LessonProps[];
 };
 
-export interface TCourseUpdateParams extends Omit<ICourse, "lectures"> {
-  lectures: TUpdateCourseLecture[];
-};
+export interface CourseUpdateParams extends Omit<CourseProps, "lectures"> {
+  lectures: UpdateCourseLecture[];
+}
 
-export type TGetAllCourseParams = {
+export type GetAllCourseParams = {
   page?: number;
   limit?: number;
   search?: string;
@@ -54,13 +54,13 @@ export type TGetAllCourseParams = {
 };
 
 // Lecture
-export type TCreateLectureParams = {
+export type CreateLectureParams = {
   course: string;
   title?: string;
   order?: number;
   path?: string;
 };
-export type TUpdateLectureParams = {
+export type UpdateLectureParams = {
   lectureId: string;
   updateData: {
     title?: string;
@@ -71,7 +71,7 @@ export type TUpdateLectureParams = {
 };
 
 // Lesson
-export type TCreateLessonParams = {
+export type CreateLessonParams = {
   lecture: string;
   course: string;
   title?: string;
@@ -80,7 +80,7 @@ export type TCreateLessonParams = {
   slug?: string;
 };
 
-export type TUpdateLessonParams = {
+export type UpdateLessonParams = {
   lessonId: string;
   updateData: {
     title?: string;
@@ -93,7 +93,7 @@ export type TUpdateLessonParams = {
   path?: string;
 };
 
-export type TCreateHistoryParams = {
+export type CreateHistoryParams = {
   course: string;
   lesson: string;
   checked: boolean | string;
@@ -101,7 +101,7 @@ export type TCreateHistoryParams = {
 };
 
 // Order
-export type TCreateOrderParams = {
+export type CreateOrderParams = {
   code: string;
   course: string;
   user: string;
@@ -112,10 +112,10 @@ export type TCreateOrderParams = {
 };
 
 //coupon
-export type TCreateCouponParams = {
+export type CreateCouponParams = {
   title: string;
   code: string;
-  type: ECouponType;
+  type: CouponType;
   value?: number;
   start_date?: Date;
   end_date?: Date;
@@ -123,18 +123,18 @@ export type TCreateCouponParams = {
   limit?: number;
   courses?: string[];
 };
-export type TUpdateCouponParams = {
+export type UpdateCouponParams = {
   _id: string;
-  updateData: Partial<TCreateCouponParams>;
+  updateData: Partial<CreateCouponParams>;
 };
-export type TCouponParams = Omit<ICoupon, "courses"> & {
+export type CouponParams = Omit<CouponProps, "courses"> & {
   courses: {
     _id: string;
     title: string;
   }[];
 };
 
-export interface StudyCoursesProps extends Omit<ICourse, "lectures"> {
+export interface StudyCoursesProps extends Omit<CourseProps, "lectures"> {
   lectures: {
     lessons: {
       slug: string;
@@ -142,16 +142,15 @@ export interface StudyCoursesProps extends Omit<ICourse, "lectures"> {
   }[];
 }
 
-
-export type TRatingIcon = "awesome" | "good" | "meh" | "bad" | "terrible";
-export type TCreateRatingParams = {
+export type RatingIcon = "awesome" | "good" | "meh" | "bad" | "terrible";
+export type CreateRatingParams = {
   rate: number;
   content: string;
   user: string;
   course: string;
 };
 
-export type TRatingItem = {
+export type RatingItem = {
   _id: string;
   content: string;
   rate: number;
@@ -163,12 +162,12 @@ export type TRatingItem = {
   user: {
     name: string;
   };
-  status: ERatingStatus;
+  status: RatingStatus;
 };
 
-export type TCouponItem = Omit<ICoupon, "_id" | "courses">;
+export type CouponItem = Omit<CouponProps, "_id" | "courses">;
 // Filter, pagination
-export type TFilterData = {
+export type FilterData = {
   page?: number;
   limit?: number;
   search?: string;
@@ -176,7 +175,7 @@ export type TFilterData = {
   active?: boolean;
 };
 
-export interface ICommentItem extends Omit<Icomment, "user"> {
+export interface CommentItem extends Omit<CommentProps, "user"> {
   user: {
     name: string;
     avatar: string;

@@ -23,8 +23,8 @@ import {
 import { allValue, ratingList, ratingStatus } from "@/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { deleteRating, updateRating } from "@/lib/actions/rating.actions";
-import { TRatingItem } from "@/types";
-import { ERatingStatus } from "@/types/enums";
+import { RatingItem } from "@/types";
+import { RatingStatus } from "@/types/enums";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
@@ -76,9 +76,7 @@ const RatingManage = ({
             />
           </div>
           <Select
-            onValueChange={(value) =>
-              handleSelectStatus(value as ERatingStatus)
-            }
+            onValueChange={(value) => handleSelectStatus(value as RatingStatus)}
             defaultValue={allValue}
           >
             <SelectTrigger className="w-[180px]">
@@ -109,7 +107,7 @@ const RatingManage = ({
         </TableHeader>
         <TableBody>
           {ratings.length > 0 &&
-            ratings.map((rating: TRatingItem) => {
+            ratings.map((rating: RatingItem) => {
               const ratingItemStatus = ratingStatus.find(
                 (item) => item.value === rating.status
               );
@@ -146,14 +144,14 @@ const RatingManage = ({
                     </Link>
                   </TableCell>
                   <TableCell>
-                    <strong>{rating.user.name}</strong>
+                    <strong>{rating.user?.name}</strong>
                   </TableCell>
                   <TableCell>
                     <StatusBadge item={ratingItemStatus}></StatusBadge>
                   </TableCell>
                   <TableCell>
                     <TableAction>
-                      {rating.status !== ERatingStatus.ACTIVE && (
+                      {rating.status !== RatingStatus.ACTIVE && (
                         <TableActionItem
                           type="approve"
                           onClick={() => handleUpdateRating(rating._id)}

@@ -2,14 +2,14 @@
 
 import Rating from "@/database/rating.model";
 import { connectToDatabase } from "../mongoose";
-import { TCreateRatingParams, TFilterData, TRatingItem } from "@/types";
+import { CreateRatingParams, FilterData, RatingItem } from "@/types";
 import Course from "@/database/course.model";
-import { ERatingStatus } from "@/types/enums";
+import { RatingStatus } from "@/types/enums";
 import { revalidatePath } from "next/cache";
 import { FilterQuery } from "mongoose";
 
 export async function createRating(
-  params: TCreateRatingParams
+  params: CreateRatingParams
 ): Promise<boolean | undefined> {
   try {
     connectToDatabase();
@@ -44,7 +44,7 @@ export async function getRatingByUserId(
 export async function updateRating(id: string): Promise<boolean | undefined> {
   try {
     connectToDatabase();
-    await Rating.findByIdAndUpdate(id, { status: ERatingStatus.ACTIVE });
+    await Rating.findByIdAndUpdate(id, { status: RatingStatus.ACTIVE });
     revalidatePath("/admin/manage/rating");
     return true;
   } catch (error) {
@@ -61,9 +61,9 @@ export async function deleteRating(id: string): Promise<boolean | undefined> {
     console.log(error);
   }
 }
-export async function getRatings(params: TFilterData): Promise<
+export async function getRatings(params: FilterData): Promise<
   | {
-      ratings: TRatingItem[] | undefined;
+      ratings: RatingItem[] | undefined;
       total: number;
     }
   | undefined

@@ -1,8 +1,8 @@
-import { ICommentItem } from "@/types";
+import { CommentItem } from "@/types";
 import { ObjectId } from "mongoose";
 import { Manrope } from "next/font/google";
 
-export const manrope = Manrope({ subsets: ["latin"]});
+export const manrope = Manrope({ subsets: ["latin"] });
 
 export const createOrderCode = () =>
   `DH-${new Date().getTime().toString().slice(-6)}`;
@@ -40,10 +40,10 @@ export const timeAgo = (date: string | Date) => {
 };
 
 export const getRepliesComment = (
-  comments: ICommentItem[],
+  comments: CommentItem[],
   parentId: string | ObjectId
 ) => {
   return comments.filter(
-    (item) => item.parentId?.toString() === parentId.toString() 
+    (item) => item.parentId?.toString() === parentId.toString()
   );
 };

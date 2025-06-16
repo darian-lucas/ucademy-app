@@ -1,23 +1,23 @@
 "use server";
-import Course, { ICourse } from "@/database/course.model";
+import Course, { CourseProps } from "@/database/course.model";
 import Lecture from "@/database/lecture.model";
 import Lesson from "@/database/lesson.model";
 import {
   StudyCoursesProps,
-  TCourseUpdateParams,
-  TCreateCourseParams,
-  TFilterData,
-  TGetAllCourseParams,
-  TUpdateCourseParams,
+  CourseUpdateParams,
+  CreateCourseParams,
+  FilterData,
+  GetAllCourseParams,
+  UpdateCourseParams,
 } from "@/types";
-import { ECourseStatus, ERatingStatus } from "@/types/enums";
+import { CourseStatus, RatingStatus } from "@/types/enums";
 import { FilterQuery } from "mongoose";
 import { revalidatePath } from "next/cache";
 import { connectToDatabase } from "../mongoose";
 import Rating from "@/database/rating.model";
 // fetching
 export async function getAllCoursesPublic(
-  params: TGetAllCourseParams
+  params: GetAllCourseParams
 ): Promise<StudyCoursesProps[] | undefined> {
   try {
     connectToDatabase();
@@ -27,19 +27,19 @@ export async function getAllCoursesPublic(
     if (search) {
       query.$or = [{ title: { $regex: search, $options: "i" } }];
     }
-    query.status = ECourseStatus.APPROVED;
+    query.status = CourseStatus.APPROVED;
     const courses = await Course.find(query)
       .skip(skip)
       .limit(limit)
       .sort({ created_at: -1 });
-    return JSON.parse(JSON.stringify(courses));;
+    return JSON.parse(JSON.stringify(courses));
   } catch (error) {
     console.log(error);
   }
 }
 export async function getAllCourses(
-  params: TFilterData
-): Promise<ICourse[] | undefined> {
+  params: FilterData
+): Promise<CourseProps[] | undefined> {
   try {
     connectToDatabase();
     const { page = 1, limit = 10, search, status } = params;
@@ -64,7 +64,7 @@ export async function getCourseBySlug({
   slug,
 }: {
   slug: string;
-}): Promise<TCourseUpdateParams | undefined> {
+}): Promise<CourseUpdateParams | undefined> {
   try {
     connectToDatabase();
     const findCourse = await Course.findOne({ slug })
@@ -87,7 +87,7 @@ export async function getCourseBySlug({
         path: "rating",
         model: Rating,
         match: {
-          status: ERatingStatus.ACTIVE,
+          status: RatingStatus.ACTIVE,
         },
       });
     return findCourse;
@@ -96,7 +96,7 @@ export async function getCourseBySlug({
   }
 }
 // CRUD
-export async function createCourse(params: TCreateCourseParams) {
+export async function createCourse(params: CreateCourseParams) {
   try {
     connectToDatabase();
     const existCourse = await Course.findOne({ slug: params.slug });
@@ -115,7 +115,7 @@ export async function createCourse(params: TCreateCourseParams) {
     console.log(error);
   }
 }
-export async function updateCourse(params: TUpdateCourseParams) {
+export async function updateCourse(params: UpdateCourseParams) {
   try {
     connectToDatabase();
     const findCourse = await Course.findOne({ slug: params.slug });

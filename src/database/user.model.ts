@@ -1,6 +1,6 @@
-import { EUserRole, EUserStatus } from "@/types/enums";
+import { UserRole, UserStatus } from "@/types/enums";
 import { Document, Schema, model, models } from "mongoose";
-export interface IUser extends Document {
+export interface UserProps extends Document {
   _id: string;
   clerkId: string;
   name: string;
@@ -8,11 +8,11 @@ export interface IUser extends Document {
   email: string;
   avatar: string;
   courses: Schema.Types.ObjectId[];
-  status: EUserStatus;
-  role: EUserRole;
+  status: UserStatus;
+  role: UserRole;
   created_at: Date;
 }
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<UserProps>({
   clerkId: {
     type: String,
   },
@@ -44,14 +44,18 @@ const userSchema = new Schema<IUser>({
   },
   role: {
     type: String,
-    enum: Object.values(EUserRole),
-    default: EUserRole.USER,
+    enum: Object.values(UserRole),
+    default: UserRole.USER,
   },
   status: {
     type: String,
-    enum: Object.values(EUserStatus),
-    default: EUserStatus.ACTIVE,
+    enum: Object.values(UserStatus),
+    default: UserStatus.ACTIVE,
   },
 });
-const User = models.User || model<IUser>("User", userSchema);
+userSchema.index(
+  { email: 1 },
+  { unique: true, partialFilterExpression: { email: { $ne: null } } }
+);
+const User = models.User || model<UserProps>("User", userSchema);
 export default User;

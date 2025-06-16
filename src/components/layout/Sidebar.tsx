@@ -1,6 +1,6 @@
 "use client";
 import { menuItems } from "@/constants";
-import { TMenuItem } from "@/types";
+import { MenuItem } from "@/types";
 import { ActiveLink } from "../common";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "../common/ModeToggle";
@@ -48,7 +48,7 @@ const Sidebar = () => {
   );
 };
 
-export function MenuItem({ url = "/", title = "", icon, onlyIcon }: TMenuItem) {
+export function MenuItem({ url = "/", title = "", icon, onlyIcon }: MenuItem) {
   return (
     <li>
       <ActiveLink url={url}>

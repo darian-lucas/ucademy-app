@@ -8,17 +8,17 @@ import {
   IconStar,
 } from "@/components/icons";
 import IconExplore from "@/components/icons/IconExplore";
-import { TMenuItem, TRatingIcon } from "@/types";
+import { MenuItem, RatingIcon } from "@/types";
 import {
-  ECouponType,
-  ECourseLevel,
-  ECourseStatus,
-  EOrderStatus,
-  ERatingStatus,
+  CouponType,
+  CourseLevel,
+  CourseStatus,
+  OrderStatus,
+  RatingStatus,
 } from "@/types/enums";
 import { z } from "zod";
 
-export const menuItems: TMenuItem[] = [
+export const menuItems: MenuItem[] = [
   {
     url: "/",
     title: "Khám phá",
@@ -63,46 +63,46 @@ export const menuItems: TMenuItem[] = [
 
 export const courseStatus: {
   title: string;
-  value: ECourseStatus;
+  value: CourseStatus;
   className?: string;
 }[] = [
   {
     title: "Đã duyệt",
-    value: ECourseStatus.APPROVED,
+    value: CourseStatus.APPROVED,
     className: "text-green-500 bg-green-500",
   },
   {
     title: "Chờ duyệt",
-    value: ECourseStatus.PENDING,
+    value: CourseStatus.PENDING,
     className: "text-orange-500 bg-orange-500",
   },
   {
     title: "Từ chối",
-    value: ECourseStatus.REJECTED,
+    value: CourseStatus.REJECTED,
     className: "text-red-500 bg-red-500",
   },
 ];
 export const courseLevel: {
   title: string;
-  value: ECourseLevel;
+  value: CourseLevel;
 }[] = [
   {
     title: "Dễ",
-    value: ECourseLevel.BEGINNER,
+    value: CourseLevel.BEGINNER,
   },
   {
     title: "Trung bình",
-    value: ECourseLevel.INTERMEDIATE,
+    value: CourseLevel.INTERMEDIATE,
   },
   {
     title: "Khó",
-    value: ECourseLevel.ADVANCED,
+    value: CourseLevel.ADVANCED,
   },
 ];
-export const courseLevelTitle: Record<ECourseLevel, string> = {
-  [ECourseLevel.BEGINNER]: "Dễ",
-  [ECourseLevel.INTERMEDIATE]: "Trung bình",
-  [ECourseLevel.ADVANCED]: "Khó",
+export const courseLevelTitle: Record<CourseLevel, string> = {
+  [CourseLevel.BEGINNER]: "Dễ",
+  [CourseLevel.INTERMEDIATE]: "Trung bình",
+  [CourseLevel.ADVANCED]: "Khó",
 };
 
 export const commonClassNames = {
@@ -158,37 +158,37 @@ export const lastLessonKey = "lastLesson";
 
 export const orderStatus: {
   title: string;
-  value: EOrderStatus;
+  value: OrderStatus;
   className?: string;
 }[] = [
   {
     title: "Đã duyệt",
-    value: EOrderStatus.COMPLETED,
+    value: OrderStatus.COMPLETED,
     className: "text-green-500 bg-green-500",
   },
   {
     title: "Chờ duyệt",
-    value: EOrderStatus.PENDING,
+    value: OrderStatus.PENDING,
     className: "text-orange-500 bg-orange-500",
   },
   {
     title: "Đã hủy",
-    value: EOrderStatus.CANCELED,
+    value: OrderStatus.CANCELED,
     className: "text-red-500 bg-red-500",
   },
 ];
 
 export const couponTypes: {
   title: string;
-  value: ECouponType;
+  value: CouponType;
 }[] = [
   {
     title: "Phần trăm",
-    value: ECouponType.PERCENT,
+    value: CouponType.PERCENT,
   },
   {
     title: "Giá trị",
-    value: ECouponType.AMOUNT,
+    value: CouponType.AMOUNT,
   },
 ];
 
@@ -208,13 +208,13 @@ export const couponFormSchema = z.object({
   end_date: z.string().optional(),
   active: z.boolean().optional(),
   value: z.string().optional(),
-  type: z.enum([ECouponType.AMOUNT, ECouponType.PERCENT]),
+  type: z.enum([CouponType.AMOUNT, CouponType.PERCENT]),
   courses: z.array(z.string()).optional(),
   limit: z.number().optional(),
 });
 
 export const ratingList: {
-  title: TRatingIcon;
+  title: RatingIcon;
   value: number;
 }[] = [
   {
@@ -239,20 +239,19 @@ export const ratingList: {
   },
 ];
 
-
 export const ratingStatus: {
   title: string;
-  value: ERatingStatus;
+  value: RatingStatus;
   className?: string;
 }[] = [
   {
     title: "Đã duyệt",
-    value: ERatingStatus.ACTIVE,
+    value: RatingStatus.ACTIVE,
     className: "text-green-500 bg-green-500",
   },
   {
     title: "Chờ duyệt",
-    value: ERatingStatus.UNACTIVE,
+    value: RatingStatus.UNACTIVE,
     className: "text-orange-500 bg-orange-500",
   },
 ];

@@ -1,5 +1,5 @@
 import { getRatings } from "@/lib/actions/rating.actions";
-import { ERatingStatus } from "@/types/enums";
+import { RatingStatus } from "@/types/enums";
 import RatingManage from "./RatingManage";
 import { ITEMS_PER_PAGE } from "@/constants";
 
@@ -9,7 +9,7 @@ const page = async ({
   searchParams: {
     page: number;
     search: string;
-    status: ERatingStatus;
+    status: RatingStatus;
   };
 }) => {
   const data = await getRatings({

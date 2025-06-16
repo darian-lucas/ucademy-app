@@ -1,12 +1,12 @@
 import { Document, Schema, model, models } from "mongoose";
-export interface IHistory extends Document {
+export interface HistoryProps extends Document {
   _id: string;
   created_at: Date;
   course: Schema.Types.ObjectId;
   lesson: Schema.Types.ObjectId;
   user: Schema.Types.ObjectId;
 }
-const historySchema = new Schema<IHistory>({
+const historySchema = new Schema<HistoryProps>({
   course: {
     type: Schema.Types.ObjectId,
     ref: "Course",
@@ -24,5 +24,5 @@ const historySchema = new Schema<IHistory>({
     default: Date.now,
   },
 });
-const History = models.History || model<IHistory>("History", historySchema);
+const History = models.History || model<HistoryProps>("History", historySchema);
 export default History;

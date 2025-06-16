@@ -8,7 +8,7 @@ import {
   IconStar,
 } from "@/components/icons";
 import IconExplore from "@/components/icons/IconExplore";
-import { MenuItem, RatingIcon } from "@/types";
+import { MenuField, RatingIcon } from "@/types";
 import {
   CouponType,
   CourseLevel,
@@ -18,7 +18,7 @@ import {
 } from "@/types/enums";
 import { z } from "zod";
 
-export const menuItems: MenuItem[] = [
+export const menuItems: MenuField[] = [
   {
     url: "/",
     title: "Khám phá",

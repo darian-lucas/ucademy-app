@@ -33,12 +33,11 @@ export async function getUserInfo({
     console.log(error);
   }
 }
-export async function getUserCourses(): Promise<
-  CourseProps[] | undefined | null
-> {
+export async function getUserCourses(
+  userId: string
+): Promise<CourseProps[] | undefined | null> {
   try {
     connectToDatabase();
-    const { userId } = await auth();
     const findUser = await User.findOne({ clerkId: userId }).populate({
       path: "courses",
       model: Course,

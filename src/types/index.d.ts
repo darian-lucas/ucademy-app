@@ -9,7 +9,7 @@ export type ActiveLinkProps = {
   children: React.ReactNode;
 };
 
-export type MenuItem = {
+export type MenuField = {
   url: string;
   title: string;
   icon: React.ReactNode;

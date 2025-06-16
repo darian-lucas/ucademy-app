@@ -1,9 +1,11 @@
 import Heading from "@/components/common/Heading";
 import { getUserCourses } from "@/lib/actions/user.actions";
 import StudyCourses from "./StudyCourses";
+import { auth } from "@clerk/nextjs/server";
 
 const page = async () => {
-  const courses = await getUserCourses();
+  const { userId } = await auth();
+  const courses = await getUserCourses(userId || "");
   return (
     <>
       <Heading>Khu vực học tập</Heading>

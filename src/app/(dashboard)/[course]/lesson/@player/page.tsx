@@ -1,10 +1,11 @@
-import Heading from "@/components/common/Heading";
+
 import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { findAllLessons } from "@/lib/actions/lesson.actions";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import LessonSaveUrl from "../LessonSaveUrl";
 import VideoPlayer from "./VideoPlayer";
+import { Heading } from "@/shared/components";
 
 const page = async ({
   params,

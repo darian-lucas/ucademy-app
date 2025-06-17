@@ -4,7 +4,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/shared/components/ui/accordion";
 import { commonClassNames } from "@/constants";
 import { LessonProps } from "@/database/lesson.model";
 import { createLecture, updateLecture } from "@/lib/actions/lecture.actions";
@@ -17,8 +17,8 @@ import slugify from "slugify";
 import Swal from "sweetalert2";
 import { IconCancel, IconCheck, IconDelete, IconEdit } from "../icons";
 import LessonItemUpdate from "../lesson/LessonItemUpdate";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Input } from "@/shared/components/ui/input";
+import { Button } from "@/shared/components/ui/button";
 
 const CourseUpdateContent = ({ course }: { course: CourseUpdateParams }) => {
   const lectures = course.lectures;

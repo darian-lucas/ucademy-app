@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { manrope } from "@/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.scss";
+import { ThemeProvider } from "@/shared/components";
 
 export const metadata: Metadata = {
   title: "Ucademy",

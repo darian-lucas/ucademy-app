@@ -1,9 +1,5 @@
 "use client";
-import { StatusBadge, TableAction } from "@/components/common";
-import Heading from "@/components/common/Heading";
-import Pagination from "@/components/common/Pagination";
-import TableActionItem from "@/components/common/TableActionItem";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/shared/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -11,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/shared/components/ui/select";
 import {
   Table,
   TableBody,
@@ -19,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/shared/components/ui/table";
 import { allValue, ratingList, ratingStatus } from "@/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { deleteRating, updateRating } from "@/lib/actions/rating.actions";
@@ -28,6 +24,7 @@ import { RatingStatus } from "@/types/enums";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import { BadgeStatus, Heading, Pagination, TableAction, TableActionItem } from "@/shared/components";
 
 const RatingManage = ({
   ratings,
@@ -147,7 +144,7 @@ const RatingManage = ({
                     <strong>{rating.user?.name}</strong>
                   </TableCell>
                   <TableCell>
-                    <StatusBadge item={ratingItemStatus}></StatusBadge>
+                    <BadgeStatus item={ratingItemStatus}></BadgeStatus>
                   </TableCell>
                   <TableCell>
                     <TableAction>

@@ -1,9 +1,5 @@
 "use client";
-import { BouncedLink, StatusBadge, TableAction } from "@/components/common";
-import Heading from "@/components/common/Heading";
-import Pagination from "@/components/common/Pagination";
-import TableActionItem from "@/components/common/TableActionItem";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/shared/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -11,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/shared/components/ui/select";
 import {
   Table,
   TableBody,
@@ -19,12 +15,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/shared/components/ui/table";
 import { allValue, couponStatuses } from "@/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { CouponItem } from "@/types";
 import { CouponType } from "@/types/enums";
 import ActionDeleteCoupon from "./ActionDeleteCoupon";
+import {
+  BouncedLink,
+  Heading,
+  Pagination,
+  TableAction,
+  TableActionItem,
+} from "@/shared/components";
+import BadgeStatus from "@/shared/components/badge-status";
 
 const CouponManage = ({
   coupons,
@@ -103,19 +107,19 @@ const CouponManage = ({
                 </TableCell>
                 <TableCell>
                   {coupon.active ? (
-                    <StatusBadge
+                    <BadgeStatus
                       item={{
                         title: "Đang kích hoạt",
                         className: "text-green-500",
                       }}
-                    ></StatusBadge>
+                    ></BadgeStatus>
                   ) : (
-                    <StatusBadge
+                    <BadgeStatus
                       item={{
                         title: "Chưa kích hoạt",
                         className: "text-orange-500",
                       }}
-                    ></StatusBadge>
+                    ></BadgeStatus>
                   )}
                 </TableCell>
                 <TableCell>

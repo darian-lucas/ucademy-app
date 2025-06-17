@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/shared/components/ui/select";
 import {
   Table,
   TableBody,
@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/shared/components/ui/table";
 import { allValue, courseStatus } from "@/constants";
 import { CourseProps } from "@/database/course.model";
 import useQueryString from "@/hooks/useQueryString";
@@ -25,10 +25,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { BouncedLink, StatusBadge, TableAction } from "../common";
-import Heading from "../common/Heading";
-import TableActionItem from "../common/TableActionItem";
-import { Input } from "../ui/input";
+import {
+  BouncedLink,
+  Heading,
+  TableAction,
+  TableActionItem,
+} from "@/shared/components";
+import { Input } from "@/shared/components/ui/input";
+import BadgeStatus from "@/shared/components/badge-status";
 
 const CourseManage = ({ courses }: { courses: CourseProps[] }) => {
   const router = useRouter();
@@ -178,12 +182,12 @@ const CourseManage = ({ courses }: { courses: CourseProps[] }) => {
                     </span>
                   </TableCell>
                   <TableCell>
-                    <StatusBadge
+                    <BadgeStatus
                       item={courseStatusItem}
                       onClick={() =>
                         handleChangeStatus(course.slug, course.status)
                       }
-                    ></StatusBadge>
+                    ></BadgeStatus>
                   </TableCell>
                   <TableCell>
                     <TableAction>

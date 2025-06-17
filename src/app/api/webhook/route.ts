@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       username: username!,
       name: username!,
       clerkId: id,
-      email: email_addresses[0].email_address,
+      email: email_addresses[0].email_address || "",
       avatar: image_url,
     });
     console.log("🚀 ~ POST ~ user:", user);

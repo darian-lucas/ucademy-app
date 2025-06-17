@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/components/ui/button";
 import { UserProps } from "@/database/user.model";
 import { createOrder } from "@/lib/actions/order.actions";
 import { createOrderCode } from "@/utils";

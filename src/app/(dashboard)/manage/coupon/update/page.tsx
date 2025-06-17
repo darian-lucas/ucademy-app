@@ -1,6 +1,7 @@
-import Heading from "@/components/common/Heading";
+
 import { getCouponByCode } from "@/lib/actions/coupon.action";
 import UpdateCouponForm from "./UpdateCouponForm";
+import { Heading } from "@/shared/components";
 
 const page = async ({
   searchParams,

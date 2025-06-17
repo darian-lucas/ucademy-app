@@ -1,11 +1,10 @@
 "use client";
 import { menuItems } from "@/constants";
 import { MenuField } from "@/types";
-import { ActiveLink } from "../common";
 import { useAuth, UserButton } from "@clerk/nextjs";
-import { ModeToggle } from "../common/ModeToggle";
 import Link from "next/link";
 import { IconUsers } from "../icons";
+import { ActiveLink, ModeToggle } from "@/shared/components";
 
 const Sidebar = () => {
   const { userId } = useAuth();

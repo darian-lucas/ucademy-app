@@ -6,8 +6,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/shared/components/ui/form";
+import { Input } from "@/shared/components/ui/input";
 import { editorOptions } from "@/constants";
 import { LessonProps } from "@/database/lesson.model";
 import { updateLesson } from "@/lib/actions/lesson.actions";
@@ -19,7 +19,7 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
-import { Button } from "../ui/button";
+import { Button } from "@/shared/components/ui/button";
 
 const formSchema = z.object({
   slug: z.string().optional(),

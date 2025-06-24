@@ -1,6 +1,6 @@
 "use client";
-import { IconCancel, IconCheck } from "@/components/icons";
-import { allValue, commonClassNames, orderStatus } from "@/constants";
+import { IconCancel, IconCheck } from "@/shared/components/icons";
+import { allValue, commonClassNames, orderStatus } from "@/shared/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { updateOrder } from "@/lib/actions/order.actions";
 import { cn } from "@/lib/utils";

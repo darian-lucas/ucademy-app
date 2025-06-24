@@ -16,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
-import { allValue, couponStatuses } from "@/constants";
+import { allValue, couponStatuses } from "@/shared/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { CouponItem } from "@/types";
 import { CouponType } from "@/types/enums";

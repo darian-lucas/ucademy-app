@@ -16,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
-import { allValue, ratingList, ratingStatus } from "@/constants";
+import { allValue, ratingList, ratingStatus } from "@/shared/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { deleteRating, updateRating } from "@/lib/actions/rating.actions";
 import { RatingItem } from "@/types";
@@ -24,7 +24,13 @@ import { RatingStatus } from "@/types/enums";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import { BadgeStatus, Heading, Pagination, TableAction, TableActionItem } from "@/shared/components";
+import {
+  BadgeStatus,
+  Heading,
+  Pagination,
+  TableAction,
+  TableActionItem,
+} from "@/shared/components";
 
 const RatingManage = ({
   ratings,

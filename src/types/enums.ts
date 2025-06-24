@@ -15,12 +15,6 @@ enum CourseStatus {
   REJECTED = "REJECTED",
 }
 
-enum CommentStatus {
-  APPROVED = "APPROVED",
-  PENDING = "PENDING",
-  REJECTED = "REJECTED",
-}
-
 enum CourseLevel {
   BEGINNER = "BEGINNER",
   INTERMEDIATE = "INTERMEDIATE",
@@ -56,5 +50,4 @@ export {
   OrderStatus,
   CouponType,
   RatingStatus,
-  CommentStatus,
 };

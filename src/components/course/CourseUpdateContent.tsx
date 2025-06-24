@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shared/components/ui/accordion";
-import { commonClassNames } from "@/constants";
+import { commonClassNames } from "@/shared/constants";
 import { LessonProps } from "@/database/lesson.model";
 import { createLecture, updateLecture } from "@/lib/actions/lecture.actions";
 import { createLesson, updateLesson } from "@/lib/actions/lesson.actions";
@@ -15,7 +15,12 @@ import { MouseEvent, useState } from "react";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import Swal from "sweetalert2";
-import { IconCancel, IconCheck, IconDelete, IconEdit } from "../icons";
+import {
+  IconCancel,
+  IconCheck,
+  IconDelete,
+  IconEdit,
+} from "../../shared/components/icons";
 import LessonItemUpdate from "../lesson/LessonItemUpdate";
 import { Input } from "@/shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";

@@ -1,15 +1,19 @@
 "use client";
-import CourseItem from "@/components/course/CourseItem";
-import { lastLessonKey } from "@/constants";
+import { lastLessonKey } from "@/shared/constants";
 import { CourseGrid } from "@/shared/components";
-import { StudyCoursesProps } from "@/types";
 import { useEffect, useState } from "react";
-const StudyCourses = ({
-  courses,
-}: {
-  courses: StudyCoursesProps[] | null | undefined;
-}) => {
-  const [lastLesson, setLastLesson] = useState<any[]>([]);
+import CourseItem from "@/modules/course/components/course-item";
+
+interface StudyCoursesProps {
+  courses: any[] | null | undefined;
+}
+
+const StudyCourses = ({ courses }: StudyCoursesProps) => {
+  const [lastLesson, setLastLesson] = useState<{
+    course: string;
+    lesson: string;
+  }[]>([]);
+
   useEffect(() => {
     if (typeof localStorage !== "undefined") {
       const data = localStorage
@@ -18,6 +22,7 @@ const StudyCourses = ({
       setLastLesson(data);
     }
   }, []);
+
   return (
     <CourseGrid>
       {courses &&

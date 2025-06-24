@@ -1,4 +1,4 @@
-import { ITEMS_PER_PAGE } from "@/constants";
+import { ITEMS_PER_PAGE } from "@/shared/constants";
 import { getCoupons } from "@/lib/actions/coupon.action";
 import CouponManage from "./CouponManage";
 

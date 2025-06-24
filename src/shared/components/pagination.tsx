@@ -1,8 +1,8 @@
 "use client";
 
-import { ITEMS_PER_PAGE } from "@/constants";
 import useQueryString from "@/hooks/useQueryString";
 import { debounce } from "lodash";
+import { ITEMS_PER_PAGE } from "@/shared/constants";
 
 interface IPaginationProps {
   totalPages: number;

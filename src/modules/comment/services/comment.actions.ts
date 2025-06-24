@@ -1,11 +1,9 @@
 "use server";
-
-import Comment from "@/database/comment.model";
 import User from "@/database/user.model";
+import { connectToDatabase } from "@/shared/lib/mongoose";
 import { CommentItem } from "@/types";
-import { CommentStatus } from "@/types/enums";
-import { connectToDatabase } from "../mongoose";
 import { revalidatePath } from "next/cache";
+import Comment from "./comment.schema";
 
 export async function createComment(params: {
   content: string;

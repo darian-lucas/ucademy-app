@@ -8,7 +8,7 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
-import { editorOptions } from "@/constants";
+import { editorOptions } from "@/shared/constants";
 import { LessonProps } from "@/database/lesson.model";
 import { updateLesson } from "@/lib/actions/lesson.actions";
 import { zodResolver } from "@hookform/resolvers/zod";

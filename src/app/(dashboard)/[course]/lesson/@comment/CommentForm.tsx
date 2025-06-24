@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Textarea } from "@/shared/components/ui/textarea";
-import { createComment } from "@/lib/actions/comment.actions";
 import { cn } from "@/lib/utils";
 import { CommentItem } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +17,7 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
+import { createComment } from "@/modules/comment/services/comment.actions";
 const formSchema = z.object({
   content: z
     .string({

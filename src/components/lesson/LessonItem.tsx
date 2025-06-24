@@ -2,7 +2,7 @@
 import { createHistory } from "@/lib/actions/history.actions";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { IconPlay } from "../icons";
+import { IconPlay } from "../../shared/components/icons";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 
 const LessonItem = ({

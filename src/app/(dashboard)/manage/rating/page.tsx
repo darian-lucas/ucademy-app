@@ -1,7 +1,7 @@
 import { getRatings } from "@/lib/actions/rating.actions";
 import { RatingStatus } from "@/types/enums";
 import RatingManage from "./RatingManage";
-import { ITEMS_PER_PAGE } from "@/constants";
+import { ITEMS_PER_PAGE } from "@/shared/constants";
 
 const page = async ({
   searchParams,

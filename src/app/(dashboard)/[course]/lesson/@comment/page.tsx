@@ -1,4 +1,4 @@
-import { getCommentsByLesson } from "@/lib/actions/comment.actions";
+
 import { getCourseBySlug } from "@/lib/actions/course.actions";
 import { getLessonBySlug } from "@/lib/actions/lesson.actions";
 import { getUserInfo } from "@/lib/actions/user.actions";
@@ -6,6 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 import CommentForm from "./CommentForm";
 import CommentField from "./CommentField";
 import CommentSorting from "./CommentSorting";
+import { getCommentsByLesson } from "@/modules/comment/services/comment.actions";
 
 const page = async ({
   params,

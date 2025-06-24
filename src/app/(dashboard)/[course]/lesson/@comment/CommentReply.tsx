@@ -1,6 +1,6 @@
 "use client";
 
-import { MAX_COMMENT_LEVEL } from "@/constants";
+import { MAX_COMMENT_LEVEL } from "@/shared/constants";
 import { cn } from "@/lib/utils";
 import { CommentItem } from "@/types";
 import { useState } from "react";

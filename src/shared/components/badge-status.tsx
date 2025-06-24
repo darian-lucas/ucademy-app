@@ -1,4 +1,4 @@
-import { commonClassNames } from "@/constants";
+import { commonClassNames } from "@/shared/constants";
 import { cn } from "@/lib/utils";
 interface BadgeStatusProps {
   item?: {

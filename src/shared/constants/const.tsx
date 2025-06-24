@@ -1,13 +1,13 @@
 import {
-  IconPlay,
-  IconUsers,
-  IconOrder,
   IconComment,
-  IconStudy,
   IconCoupon,
+  IconExplore,
+  IconOrder,
+  IconPlay,
   IconStar,
-} from "@/components/icons";
-import IconExplore from "@/components/icons/IconExplore";
+  IconStudy,
+  IconUsers,
+} from "@/shared/components/icons";
 import { MenuField, RatingIcon } from "@/types";
 import {
   CouponType,
@@ -31,17 +31,17 @@ export const menuItems: MenuField[] = [
   },
   {
     url: "/manage/course",
-    title: "Quản lí khóa học",
+    title: "Quản lý khóa học",
     icon: <IconExplore className="size-5" />,
   },
   {
     url: "/manage/member",
-    title: "Quản lí thành viên",
+    title: "Quản lý thành viên",
     icon: <IconUsers className="size-5" />,
   },
   {
     url: "/manage/order",
-    title: "Quản lí đơn hàng",
+    title: "Quản lý đơn hàng",
     icon: <IconOrder className="size-5" />,
   },
   {
@@ -56,11 +56,10 @@ export const menuItems: MenuField[] = [
   },
   {
     url: "/manage/comment",
-    title: "Quản lí bình luận",
+    title: "Quản lý bình luận",
     icon: <IconComment className="size-5" />,
   },
 ];
-
 export const courseStatus: {
   title: string;
   value: CourseStatus;
@@ -104,7 +103,6 @@ export const courseLevelTitle: Record<CourseLevel, string> = {
   [CourseLevel.INTERMEDIATE]: "Trung bình",
   [CourseLevel.ADVANCED]: "Khó",
 };
-
 export const commonClassNames = {
   status:
     "bg-opacity-10 border border-current rounded-md font-medium px-3 py-1 text-xs whitespace-nowrap",
@@ -115,7 +113,6 @@ export const commonClassNames = {
   btnPrimary:
     "flex items-center justify-center w-full mt-10 rounded-lg text-white font-bold bg-primary h-12 button-primary",
 };
-
 export const editorOptions = (field: any, theme: any) => ({
   initialValue: "",
   onBlur: field.onBlur,
@@ -153,9 +150,7 @@ export const editorOptions = (field: any, theme: any) => ({
     content_style: `@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');body { font-family: Manrope,Helvetica,Arial,sans-serif; font-size:14px; line-height: 2; padding-bottom: 32px; } img { max-width: 100%; height: auto; display: block; margin: 0 auto; };`,
   },
 });
-
 export const lastLessonKey = "lastLesson";
-
 export const orderStatus: {
   title: string;
   value: OrderStatus;
@@ -177,7 +172,6 @@ export const orderStatus: {
     className: "text-red-500 bg-red-500",
   },
 ];
-
 export const couponTypes: {
   title: string;
   value: CouponType;
@@ -191,7 +185,6 @@ export const couponTypes: {
     value: CouponType.AMOUNT,
   },
 ];
-
 export const couponFormSchema = z.object({
   title: z
     .string({
@@ -212,7 +205,6 @@ export const couponFormSchema = z.object({
   courses: z.array(z.string()).optional(),
   limit: z.number().optional(),
 });
-
 export const ratingList: {
   title: RatingIcon;
   value: number;
@@ -238,7 +230,6 @@ export const ratingList: {
     value: 1,
   },
 ];
-
 export const ratingStatus: {
   title: string;
   value: RatingStatus;
@@ -255,9 +246,8 @@ export const ratingStatus: {
     className: "text-orange-500 bg-orange-500",
   },
 ];
-
 export const allValue = "ALL";
-export const ITEMS_PER_PAGE = 5;
+export const ITEMS_PER_PAGE = 10;
 export const couponStatuses = [
   {
     title: "Đang kích hoạt",
@@ -268,5 +258,4 @@ export const couponStatuses = [
     value: 0,
   },
 ];
-
 export const MAX_COMMENT_LEVEL = 3;

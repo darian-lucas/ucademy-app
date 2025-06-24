@@ -1,4 +1,5 @@
-import { CommentStatus } from "@/types/enums";
+
+import { CommentStatus } from "@/shared/types/enums";
 import { Document, Schema, model, models } from "mongoose";
 
 export interface CommentProps extends Document {

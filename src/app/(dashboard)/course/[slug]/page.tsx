@@ -1,5 +1,5 @@
 import PageNotFound from "@/app/not-found";
-import { IconPlay, IconStudy, IconUsers } from "@/components/icons";
+import { IconPlay, IconStudy, IconUsers } from "@/shared/components/icons";
 import LessonContent from "@/components/lesson/LessonContent";
 import {
   Accordion,
@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shared/components/ui/accordion";
-import { courseLevelTitle } from "@/constants";
+import { courseLevelTitle } from "@/shared/constants";
 import {
   getCourseBySlug,
   getCourseLessonsInfo,

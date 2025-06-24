@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { IconClose } from "@/components/icons";
+import { IconClose } from "@/shared/components/icons";
 import { Button } from "@/shared/components/ui/button";
 import { Calendar } from "@/shared/components/ui/calendar";
 import { Checkbox } from "@/shared/components/ui/checkbox";
@@ -25,7 +25,7 @@ import {
 } from "@/shared/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/shared/components/ui/radio-group";
 import { Switch } from "@/shared/components/ui/switch";
-import { couponFormSchema, couponTypes } from "@/constants";
+import { couponFormSchema, couponTypes } from "@/shared/constants";
 import { createCoupon } from "@/lib/actions/coupon.action";
 import { getAllCourses } from "@/lib/actions/course.actions";
 import { CouponType } from "@/types/enums";
